@@ -30,7 +30,7 @@
         <div class="map"
             leaflet
             (leafletMapReady)="onMapReady($event)"
-           
+            (leafletClick)="makerfunc($event)"
              leaflet style="height: 300px;"
 			 [leafletOptions]="options"
 			 [leafletLayers]="markers">

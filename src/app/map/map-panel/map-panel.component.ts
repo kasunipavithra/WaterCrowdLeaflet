@@ -90,9 +90,10 @@ export class MapPanelComponent implements OnInit {
 
   markers: Layer[] = [];
 
-	addMarker() {
+	addMarker(lattiude:number, longitude:number) {
+    alert("lat "+lattiude+"lon "+longitude)
 		const newMarker = marker(
-			[ 46.879966 + 0.1 * (Math.random() - 0.5), -121.726909 + 0.1 * (Math.random() - 0.5) ],
+			[ lattiude, longitude ],
 			{
 				icon: icon({
 					iconSize: [ 25, 41 ],
@@ -111,7 +112,7 @@ export class MapPanelComponent implements OnInit {
 }
 
 onMapReady(map: Map) {
-  map.on('click', <LeafletMouseEvent>(e) => { console.log(e.latlng.lat); console.log(e.latlng.lng); });
+  map.on('click', <LeafletMouseEvent>(e) => { this.addMarker(e.latlng.lat,e.latlng.lng); });
 }
 
 }
