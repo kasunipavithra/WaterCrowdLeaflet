@@ -86,4 +86,32 @@ export class MapPanelComponent implements OnInit {
   };
 
 
+
+
+  markers: Layer[] = [];
+
+	addMarker() {
+		const newMarker = marker(
+			[ 46.879966 + 0.1 * (Math.random() - 0.5), -121.726909 + 0.1 * (Math.random() - 0.5) ],
+			{
+				icon: icon({
+					iconSize: [ 25, 41 ],
+					iconAnchor: [ 13, 41 ],
+					iconUrl: 'leaflet/marker-icon.png',
+          shadowUrl: 'leaflet/marker-shadow.png'
+				})
+			}
+		);
+
+		this.markers.push(newMarker);
+	}
+
+	removeMarker() {
+		this.markers.pop();
+}
+
+onMapReady(map: Map) {
+  map.on('click', <LeafletMouseEvent>(e) => { console.log(e.latlng.lat); console.log(e.latlng.lng); });
+}
+
 }
