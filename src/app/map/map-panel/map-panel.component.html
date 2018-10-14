@@ -1,4 +1,7 @@
 <h1>Map panel heading</h1>
 
-<div class="map" leaflet [leafletOptions]="options">
+<div class="map"
+ leaflet
+(leafletMapReady)="onMapReady($event)"
+[leafletOptions]="options">
 </div>

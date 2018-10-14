@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { latLng, tileLayer } from 'leaflet';
+import { latLng, tileLayer,Map } from 'leaflet';
 import { MapPointService } from '../../services/map-point.service';
 
 
@@ -18,7 +18,10 @@ export class MapPanelComponent implements OnInit {
     this.mapPointService.hello();
   }
 
-  
+  onMapReady(map: Map) {
+    map.on('click', <LeafletMouseEvent>(e) => { this.mapPointService.addMarker(e.latlng.lat,e.latlng.lng); });
+  }
+
   options = {
     layers: [
       tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {

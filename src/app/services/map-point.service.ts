@@ -16,9 +16,9 @@ export class MapPointService {
 
   markers: Layer[] = [];
 
-	addMarker() {
+	addMarker(latitude:number,longitude:number) {
 		const newMarker = marker(
-			[ 46.879966 + 0.1 * (Math.random() - 0.5), -121.726909 + 0.1 * (Math.random() - 0.5) ],
+			[ latitude, longitude ],
 			{
 				icon: icon({
 					iconSize: [ 25, 41 ],
@@ -29,11 +29,12 @@ export class MapPointService {
 			}
 		);
 
-		this.markers.push(newMarker);
+    this.markers.push(newMarker);
+    alert("lat"+latitude+"lon"+longitude);
 	}
 
 	removeMarker() {
 		this.markers.pop();
 	}
 }
-}
+
