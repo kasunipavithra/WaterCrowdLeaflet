@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { latLng, tileLayer } from 'leaflet';
+import { MapPointService } from '../../services/map-point.service';
 
 
 @Component({ 
@@ -11,9 +12,10 @@ import { latLng, tileLayer } from 'leaflet';
 export class MapPanelComponent implements OnInit {
 
 
-  constructor() { }
+  constructor(private mapPointService: MapPointService) { }
 
   ngOnInit() {
+    this.mapPointService.hello();
   }
 
   
