@@ -11,7 +11,7 @@ export class MapPointService {
   constructor() { }
 
   hello(){
-    alert("hellow mappoint service");
+   // alert("hellow mappoint service");
   }
 
   markers: Layer[] = [];
@@ -35,6 +35,10 @@ export class MapPointService {
 
 	removeMarker() {
 		this.markers.pop();
-	}
+  }
+  
+  getMarkers():Layer[]{
+    return this.markers;
+  }
 }
 
