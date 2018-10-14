@@ -1,27 +1,7 @@
 <h1>Map panel heading</h1>
 
-<pre>
-	&lt;div leaflet style="height: 300px;"
-			[leafletOptions]="options"
-			[leafletLayers]="markers"&gt;
-	&lt;/div&gt;
-	</pre>
-
-	<form class="col">
-
-		<button type="button"
-				class="btn btn-primary"
-				(click)="addMarker()">Add Marker</button>
-
-		<button type="button"
-				class="btn btn-primary"
-				(click)="removeMarker()">Remove Marker</button>
-
-</form>
-
-<div class="row">
 	<label class="col col-form-label">{{markers?.length}} Markers</label>
-</div>
+
 
 
 <div leaflet style="height: 300px;"
