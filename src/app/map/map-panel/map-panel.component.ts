@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { latLng, tileLayer,Map, Layer, marker,icon } from 'leaflet';
 //import { MapPointService } from '../../services/map-point.service';
 
@@ -12,14 +12,37 @@ import { latLng, tileLayer,Map, Layer, marker,icon } from 'leaflet';
 export class MapPanelComponent implements OnInit {
 
 
-  constructor() { }
+  constructor(private zone: NgZone) { }
 
+fitBounds: any = null;
+/*circle = circle([ 46.95, -122 ], { radius: 5000 });
+*/
   ngOnInit() {
-    //this.mapPointService.hello();
+  
+    /*
+	// The 'add' event callback handler happens outside of the Angular zone
+	this.circle.on('add', () => {
+		
+		// But, we can run stuff inside of Angular's zone by calling NgZone.run()
+		// everything inside the arrow function body happens inside of Angular's zone, where changes will be detected
+		this.zone.run(() => {
+			this.fitBounds = this.circle.getBounds();
+		});
+		
+  });
+  
+  */
   }
 
   onMapReady(map: Map) {
-    map.on('click', <LeafletMouseEvent>(e) => { console.log(e.latlng.lat,e.latlng.lng); });
+    map.on('click', <LeafletMouseEvent>(e) => { console.log(e.latlng.lat,e.latlng.lng);
+    
+    
+    	this.zone.run(() => {
+        this.fitBounds = this.addMarker(e.latlng.lat,e.latlng.lng);
+      });
+    
+    });
   }
 
 
@@ -50,9 +73,9 @@ options = {
 
 markers: Layer[] = [];
 
-addMarker() {
+addMarker(latitude:number,longitude:number) {
   const newMarker = marker(
-    [  46.879966 + 0.1 * (Math.random() - 0.5), -121.726909 + 0.1 * (Math.random() - 0.5) ],
+    [latitude,longitude],
     {
       icon: icon({
         iconSize: [ 25, 41 ],
