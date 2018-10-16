@@ -1,4 +1,12 @@
 <h1>My Crowd Map</h1>
 
-<div class="map" leaflet [leafletOptions]="options">
+	<label class="col col-form-label">{{markers?.length}} Markers</label>
+
+
+
+<div leaflet style="height: 300px;"
+class="map"
+(leafletMapReady)="onMapReady($event)"
+			 [leafletOptions]="options"
+			 [leafletLayers]="markers">
 </div>
